@@ -21,8 +21,8 @@
 
           <q-item-section side>
             <q-badge 
-              :color="user.online ? 'blue' : 'orange'">
-              <!-- if user is online then print online else offline -->
+              :color="user.online ? 'light-blue-5' : 'grey-4'">
+              <!-- if condition ?=then  :=else -->
               {{user.online ? 'online' : 'offline'}}
             </q-badge>
           </q-item-section>
