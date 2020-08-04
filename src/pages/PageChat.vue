@@ -2,7 +2,33 @@
   <q-page class="flex">
     <q-footer elevated>
       <q-toolbar>
-        <q-toolbar-title>Footer</q-toolbar-title>
+        <q-input
+          bottom-slots
+          v-model="text"
+          label="Label"
+          counter
+          maxlength="12"
+          :dense="dense"
+          class="full-width">
+          <template v-slot:before>
+            <q-avatar>
+              <img src="https://cdn.quasar.dev/img/avatar5.jpg">
+            </q-avatar>
+          </template>
+
+          <template v-slot:append>
+            <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer" />
+            <q-icon name="schedule" />
+          </template>
+
+          <template v-slot:hint>
+            Field hint
+          </template>
+
+          <template v-slot:after>
+            <q-btn round dense flat icon="send" />
+          </template>
+        </q-input>
       </q-toolbar>
     </q-footer>
   </q-page>
