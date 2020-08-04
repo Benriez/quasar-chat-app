@@ -4,7 +4,7 @@
         <q-item v-for="user in users" :key="user.id" class="q-my-sm" clickable v-ripple>
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white">
-              {{ user.letter }}
+              {{ user.name.charAt(0)}}
             </q-avatar>
           </q-item-section>
 
@@ -29,15 +29,12 @@ export default {
       users: [ {
         id: 1,
         name: 'Ruddy',
-        letter: 'R'
       }, {
         id: 2,
         name: 'Mallorie',
-        letter: 'M'
       }, {
         id: 3,
         name: 'Elisabetta',
-        letter: 'E'
       }]
     }
   }
