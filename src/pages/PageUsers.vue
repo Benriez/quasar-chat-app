@@ -1,7 +1,14 @@
 <template>
   <q-page class="flex">
-      <q-list bordered>
-        <q-item v-for="user in users" :key="user.id" class="q-my-sm" clickable v-ripple>
+      <q-list
+        class="full-width"
+        separator 
+        bordered>
+        <q-item
+          v-for="user in users"
+          :key="user.id"
+          clickable
+          v-ripple>
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white">
               {{ user.name.charAt(0)}}
