@@ -4,7 +4,7 @@
       <q-toolbar>
 
         <q-toolbar-title class="absolute-center">
-          Quasar-Chat-App
+          {{title}}
         </q-toolbar-title>
 
       </q-toolbar>
@@ -19,11 +19,14 @@
 <script>
 
 export default {
-  name: 'MainLayout',
-  components: {  },
-  data () {
-    return {
-      
+  computed: {
+    title() {
+      // determin current path
+      let currentPath = this.$route.fullPath
+      if (currentPath == '/') return 'Quasar-Chat-App'
+      else if (currentPath == '/auth') return 'Auth'
+      else if (currentPath == '/chat') return 'chat'
+      console.log(currentPath)
     }
   }
 }
