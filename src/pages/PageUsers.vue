@@ -29,25 +29,20 @@ export default {
     return {
       users: [ {
         id: 1,
-        name: 'Ruddy Jedrzej',
+        name: 'Ruddy',
         email: 'rjedrzej0@discuz.net',
         letter: 'R'
       }, {
         id: 2,
-        name: 'Mallorie Alessandrini',
+        name: 'Mallorie',
         email: 'malessandrini1@marketwatch.com',
         letter: 'M'
       }, {
         id: 3,
-        name: 'Elisabetta Wicklen',
+        name: 'Elisabetta',
         email: 'ewicklen2@microsoft.com',
         letter: 'E'
-      }, {
-        id: 4,
-        name: 'Seka Fawdrey',
-        email: 'sfawdrey3@wired.com',
-        letter: 'S'
-      } ]
+      }]
     }
   }
 }
