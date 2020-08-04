@@ -24,8 +24,8 @@ export default {
       // determin current path
       let currentPath = this.$route.fullPath
       if (currentPath == '/') return 'Quasar-Chat-App'
-      else if (currentPath == '/auth') return 'Auth'
-      else if (currentPath == '/chat') return 'chat'
+      else if (currentPath == '/auth') return 'Login'
+      else if (currentPath == '/chat') return 'Chat'
       console.log(currentPath)
     }
   }
