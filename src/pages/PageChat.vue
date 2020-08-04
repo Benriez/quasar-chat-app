@@ -9,6 +9,7 @@
       <q-chat-message
         name="Jane"
         :text="['doing fine, how r you?']"
+        bg-color="light-blue-5"
       />
     </div>
     <q-footer elevated>
