@@ -9,13 +9,7 @@
           counter
           maxlength="12"
           :dense="dense"
-          class="full-width">
-          <template v-slot:before>
-            <q-avatar>
-              <img src="https://cdn.quasar.dev/img/avatar5.jpg">
-            </q-avatar>
-          </template>
-
+          >
           <template v-slot:append>
             <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer" />
             <q-icon name="schedule" />
