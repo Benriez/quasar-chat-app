@@ -10,7 +10,6 @@
 
           <q-item-section>
             <q-item-label>{{ user.name }}</q-item-label>
-            <q-item-label caption lines="1">{{ user.email }}</q-item-label>
           </q-item-section>
 
           <q-item-section side>
@@ -30,17 +29,14 @@ export default {
       users: [ {
         id: 1,
         name: 'Ruddy',
-        email: 'rjedrzej0@discuz.net',
         letter: 'R'
       }, {
         id: 2,
         name: 'Mallorie',
-        email: 'malessandrini1@marketwatch.com',
         letter: 'M'
       }, {
         id: 3,
         name: 'Elisabetta',
-        email: 'ewicklen2@microsoft.com',
         letter: 'E'
       }]
     }
