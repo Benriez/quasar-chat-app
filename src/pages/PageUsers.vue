@@ -7,6 +7,7 @@
         <q-item
           v-for="user in users"
           :key="user.id"
+          to="/chat"
           clickable
           v-ripple>
           <q-item-section avatar>
