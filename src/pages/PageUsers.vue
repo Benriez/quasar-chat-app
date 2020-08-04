@@ -1,9 +1,9 @@
 <template>
-  <q-page class="flex">
+  <q-page class="flex q-pa-md">
       <q-list
         class="full-width"
         separator 
-        bordered>
+        >
         <q-item
           v-for="user in users"
           :key="user.id"
@@ -20,7 +20,11 @@
           </q-item-section>
 
           <q-item-section side>
-            <q-icon name="chat_bubble" color="green" />
+            <q-badge 
+              :color="user.online ? 'blue' : 'orange'">
+              <!-- if user is online then print online else offline -->
+              {{user.online ? 'online' : 'offline'}}
+            </q-badge>
           </q-item-section>
         </q-item>
 
@@ -36,12 +40,15 @@ export default {
       users: [ {
         id: 1,
         name: 'Ruddy',
+        online: true
       }, {
         id: 2,
         name: 'Mallorie',
+        online: true
       }, {
         id: 3,
         name: 'Elisabetta',
+        online: false
       }]
     }
   }
