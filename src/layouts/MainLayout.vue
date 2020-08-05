@@ -14,6 +14,7 @@
         </q-toolbar-title>
 
         <q-btn
+          v-if="!userDetails.userID"
           to="/auth"
           class="absolute-right q-pr-sm"
           icon="account_circle"
@@ -21,6 +22,16 @@
           flat
           dense
           label="Login" />
+        <q-btn
+          v-else
+          @click="logoutUser"
+          class="absolute-right q-pr-sm"
+          icon="account_circle"
+          no-caps
+          flat
+          dense>
+          Loggout<br> {{userDetails.name}}
+        </q-btn>
 
       </q-toolbar>
     </q-header>
@@ -32,9 +43,12 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
 
 export default {
   computed: {
+    //userDetails object is now available within this component
+    ...mapState('store', ['userDetails']),
     title() {
       // determin current path
       let currentPath = this.$route.fullPath
@@ -43,6 +57,15 @@ export default {
       else if (currentPath == '/chat') return 'Chat'
       console.log(currentPath)
     }
+  },
+  methods: {
+    ...mapActions('store', ['logoutUser'])
   }
 }
 </script>
+
+<style lang="stylus">
+  .q-toolbar
+    .q-btn
+      line-height: 1.2
+</style>
