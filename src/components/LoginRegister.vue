@@ -22,8 +22,8 @@
             <!-- q-space pushes q-btn to the right -->
             <q-space />
             <q-btn
-              color="primary"
-              label="Primary" />
+              color="light-blue-4"
+              :label="tab" />
         </div>
 
 
