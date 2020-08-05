@@ -24,6 +24,7 @@
           label="Login" />
         <q-btn
           v-else
+          @click="logoutUser"
           class="absolute-right q-pr-sm"
           icon="account_circle"
           no-caps
@@ -42,7 +43,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 
 export default {
   computed: {
@@ -56,6 +57,9 @@ export default {
       else if (currentPath == '/chat') return 'Chat'
       console.log(currentPath)
     }
+  },
+  methods: {
+    ...mapActions('store', ['logoutUser'])
   }
 }
 </script>

@@ -58,12 +58,18 @@ const actions = {
                       userID: userID
                   })
               })
+              //routes user to the next site
+              this.$router.push('/')
             } else {
               // User logged out
               //sets back user Details to an empty object
               commit('setUserDetails', {})
+              this.$router.replace('/auth')
             }
           });
+    },
+    logoutUser(){
+        firebaseAuth.signOut()
     }
 }
 // methods to grab data from the state and 
