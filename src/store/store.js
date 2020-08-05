@@ -13,8 +13,7 @@ const mutations = {
         state.userDetails = payload
     },
     addUser(state, payload){
-        console.log('payload: ', payload)
-        
+        Vue.set(state.users, payload.userID, payload.userDetails)
     }
 }
 // also methods but can be asynch
@@ -108,7 +107,9 @@ const actions = {
 // methods to grab data from the state and 
 // make that data available for vue components
 const getters = {
-
+    users: state => {
+        return state.users
+    }
 }
 
 export default {
