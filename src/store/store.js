@@ -27,8 +27,14 @@ const actions = {
                 console.log(error.message)
             })
     },
-    loginUser(){
-        console.log('login user')
+    loginUser({}, payload){
+        firebaseAuth.signInWithEmailAndPassword(payload.email, payload.password)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
     }
 }
 // methods to grab data from the state and 
