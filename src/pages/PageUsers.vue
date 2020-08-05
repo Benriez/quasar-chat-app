@@ -5,8 +5,8 @@
         separator 
         >
         <q-item
-          v-for="user in users"
-          :key="user.id"
+          v-for="(user, key) in users"
+          :key="key"
           to="/chat"
           clickable
           v-ripple>
