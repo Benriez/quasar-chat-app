@@ -4,7 +4,7 @@ import {firebaseAuth, firebaseDb} from 'boot/firebase'
 //all the data of the app will go here
 const state = {
     userDetails: {},
-    users:{}
+    users: {}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
@@ -43,6 +43,9 @@ const actions = {
                 console.log(error.message)
             })
     },
+    logoutUser(){
+        firebaseAuth.signOut()
+    },
     //to trigger a mutation, use the commit method
     handleAuthStateChanged({commit, dispatch, state}){
         //firebase hook that listens for change
@@ -63,12 +66,12 @@ const actions = {
                       userID: userID
                   })
               })
-              //update users online status on firebase
+
               dispatch('firebaseUpdateUser', {
-                  userID: userID,
-                  updates: {
-                      online: true
-                  }
+                userID: userID,
+                updates: {
+                    online: true
+                }
               })
               dispatch('firebaseGetUsers')
               //routes user to the next site
@@ -87,11 +90,13 @@ const actions = {
             }
           });
     },
-    firebaseUpdateUser({}, payload){
+
+    firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     },
-    firebaseGetUsers({commit}){
-        firebaseDb.ref('users').on('child_added', snapshot => {
+
+    firebaseGetUsers({commit}) {
+        firebaseDb.ref('users').on('child_added', snapshot =>{
             let userDetails= snapshot.val()
             let userID= snapshot.key
             commit('addUser', {
@@ -99,15 +104,12 @@ const actions = {
                 userDetails
             })
         })
-    },
-    logoutUser(){
-        firebaseAuth.signOut()
     }
 }
 // methods to grab data from the state and 
 // make that data available for vue components
 const getters = {
-    users: state => {
+    users:state => {
         return state.users
     }
 }
