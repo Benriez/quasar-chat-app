@@ -38,6 +38,9 @@ const actions = {
                 console.log(error.message)
             })
     },
+    logoutUser(){
+        firebaseAuth.signOut()
+    },
     //to trigger a mutation, use the commit method
     handleAuthStateChanged({commit}){
         //firebase hook that listens for change
