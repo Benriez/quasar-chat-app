@@ -40,13 +40,17 @@ const actions = {
     },
     //to trigger a mutation, use the commit method
     handleAuthStateChanged({commit}){
+        //firebase hook that listens for change
         firebaseAuth.onAuthStateChanged(user => {
             if (user) {
               // User is logged in.
+              //get current user id from database
               let userID = firebaseAuth.currentUser.uid
-              //getting userDetails from Firebase
+              //getting user details from Firebase
               firebaseDb.ref('users/' + userID ).once('value', snapshot => {
-                  let userDetails= snapshot.val()
+                //snapshot wont show needed info
+                //snapshot.val does  
+                let userDetails= snapshot.val()
                   //triggers mutation
                   commit('setUserDetails', {
                       name: userDetails.name,
@@ -56,7 +60,8 @@ const actions = {
               })
             } else {
               // User logged out
-
+              //sets back user Details to an empty object
+              commit('setUserDetails', {})
             }
           });
     }

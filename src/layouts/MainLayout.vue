@@ -14,6 +14,7 @@
         </q-toolbar-title>
 
         <q-btn
+          v-if="!userDetails.userID"
           to="/auth"
           class="absolute-right q-pr-sm"
           icon="account_circle"
@@ -32,9 +33,12 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 
 export default {
   computed: {
+    //userDetails object is now available within this component
+    ...mapState('store', ['userDetails']),
     title() {
       // determin current path
       let currentPath = this.$route.fullPath
