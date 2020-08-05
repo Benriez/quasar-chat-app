@@ -67,6 +67,7 @@ const actions = {
                     online: true
                 }
               })
+              dispatch('firebaseGetUsers')
               this.$router.push('/')
             } else {
               // User logged out
@@ -84,6 +85,12 @@ const actions = {
     },
     firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+    },
+    firebaseGetUsers() {
+        firebaseDb.ref('users').on('child_added', snapshot =>{
+            let  userDetails= snapshot.val()
+            console.log('userDetails: ', userDetails)
+        })
     }
 }
 // methods to grab data from the state and 
