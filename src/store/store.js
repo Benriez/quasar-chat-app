@@ -42,7 +42,7 @@ const actions = {
         firebaseAuth.signOut()
     },
     //to trigger a mutation, use the commit method
-    handleAuthStateChanged({commit}){
+    handleAuthStateChanged({commit, dispatch, state}){
         //firebase hook that listens for change
         firebaseAuth.onAuthStateChanged(user => {
             if (user) {
@@ -61,14 +61,29 @@ const actions = {
                       userID: userID
                   })
               })
+              dispatch('firebaseUpdateUser', {
+                userID: userID,
+                updates: {
+                    online: true
+                }
+              })
               this.$router.push('/')
             } else {
               // User logged out
+              dispatch('firebaseUpdateUser', {
+                userID: state.userDetails.userID,
+                updates: {
+                    online: false
+                }
+              })
               //sets back user Details to an empty object
               commit('setUserDetails', {})
               this.$router.replace('/auth')
             }
           });
+    },
+    firebaseUpdateUser({}, payload) {
+        firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     }
 }
 // methods to grab data from the state and 
