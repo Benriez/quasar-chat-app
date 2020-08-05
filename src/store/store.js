@@ -88,7 +88,9 @@ const actions = {
     },
     firebaseGetUsers() {
         firebaseDb.ref('users').on('child_added', snapshot =>{
-            let  userDetails= snapshot.val()
+            console.log('snapshot: ', snapshot)
+            let userDetails= snapshot.val()
+            let userID= snapshot.key
             console.log('userDetails: ', userDetails)
         })
     }
