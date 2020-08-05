@@ -2,13 +2,18 @@ import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
 //all the data of the app will go here
 const state = {
-    userDetails: {}
+    userDetails: {},
+    users:{}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
 const mutations = {
     setUserDetails(state, payload) {
         state.userDetails = payload
+    },
+    addUser(state, payload){
+        console.log('payload: ', payload)
+        
     }
 }
 // also methods but can be asynch
@@ -65,6 +70,7 @@ const actions = {
                       online: true
                   }
               })
+              dispatch('firebaseGetUsers')
               //routes user to the next site
               this.$router.push('/')
             } else {
@@ -83,6 +89,16 @@ const actions = {
     },
     firebaseUpdateUser({}, payload){
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+    },
+    firebaseGetUsers({commit}){
+        firebaseDb.ref('users').on('child_added', snapshot => {
+            let userDetails= snapshot.val()
+            let userID= snapshot.key
+            commit('addUser', {
+                userID,
+                userDetails
+            })
+        })
     },
     logoutUser(){
         firebaseAuth.signOut()
