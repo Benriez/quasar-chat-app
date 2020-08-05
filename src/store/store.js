@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
 //all the data of the app will go here
