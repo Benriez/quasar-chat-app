@@ -35,6 +35,9 @@ const actions = {
             .catch(error => {
                 console.log(error.message)
             })
+    },
+    handleAuthStateChanged(){
+        console.log('handleAuth')
     }
 }
 // methods to grab data from the state and 
