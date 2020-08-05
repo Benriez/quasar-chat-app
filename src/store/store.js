@@ -2,7 +2,8 @@ import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
 //all the data of the app will go here
 const state = {
-    userDetails: {}
+    userDetails: {},
+    users: {}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
