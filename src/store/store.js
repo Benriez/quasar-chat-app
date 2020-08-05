@@ -14,7 +14,7 @@ const mutations = {
     },
     addUser(state, payload){
         console.log('payload: ', payload)
-        
+        Vue.set(state.users, payload.userID, payload.userDetails)
     }
 }
 // also methods but can be asynch
