@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
 //all the data of the app will go here
@@ -10,6 +11,10 @@ const state = {
 const mutations = {
     setUserDetails(state, payload) {
         state.userDetails = payload
+    },
+    addUser(state, payload){
+        console.log('payload: ', payload)
+        
     }
 }
 // also methods but can be asynch
@@ -87,12 +92,14 @@ const actions = {
     firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     },
-    firebaseGetUsers() {
+    firebaseGetUsers({commit}) {
         firebaseDb.ref('users').on('child_added', snapshot =>{
-            console.log('snapshot: ', snapshot)
             let userDetails= snapshot.val()
             let userID= snapshot.key
-            console.log('userDetails: ', userDetails)
+            commit('addUser', {
+                userID,
+                userDetails
+            })
         })
     }
 }
