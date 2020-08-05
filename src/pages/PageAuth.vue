@@ -39,6 +39,7 @@ export default {
     }
   },
   components: {
+    //import component
     'login-register': require('components/LoginRegister.vue').default
   }
 }
