@@ -28,8 +28,9 @@
           icon="account_circle"
           no-caps
           flat
-          dense
-          label="Logout" />
+          dense>
+          Loggout<br> {{userDetails.name}}
+        </q-btn>
 
       </q-toolbar>
     </q-header>
@@ -58,3 +59,9 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+  .q-toolbar
+    .q-btn
+      line-height: 1.2
+</style>
