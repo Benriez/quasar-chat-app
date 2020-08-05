@@ -1,5 +1,5 @@
 <template>
-    
+    <p>Login / register</p>
 </template>
 
 <script>
