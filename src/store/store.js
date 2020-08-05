@@ -61,10 +61,12 @@ const actions = {
                       userID: userID
                   })
               })
+              this.$router.push('/')
             } else {
               // User logged out
               //sets back user Details to an empty object
               commit('setUserDetails', {})
+              this.$router.replace('/auth')
             }
           });
     }
