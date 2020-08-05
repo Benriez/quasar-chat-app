@@ -12,7 +12,16 @@ const mutations = {
 // also methods but can be asynch
 // can trigger mutations
 const actions = {
+    registerUser({}, payload){
+        firebaseAuth.createUserWithEmailAndPassword(payload.email, payload.password)
+            .then(response => {
+                console.log(response)
 
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
 }
 // methods to grab data from the state and 
 // make that data available for vue components
