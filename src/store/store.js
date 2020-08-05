@@ -66,6 +66,7 @@ const actions = {
                       userID: userID
                   })
               })
+
               dispatch('firebaseUpdateUser', {
                 userID: userID,
                 updates: {
@@ -88,6 +89,7 @@ const actions = {
             }
           });
     },
+
     firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     },
@@ -100,6 +102,7 @@ const actions = {
                 userDetails
             })
         })
+
     }
 }
 // methods to grab data from the state and 
