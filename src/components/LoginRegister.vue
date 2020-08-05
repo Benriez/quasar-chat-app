@@ -1,5 +1,5 @@
 <template>
-    <q-form>
+    <q-form @submit="submitForm">
         <q-input
           v-if="tab == 'register'"
           outlined
@@ -22,6 +22,7 @@
             <!-- q-space pushes q-btn to the right -->
             <q-space />
             <q-btn
+              type="submit"
               color="light-blue-4"
               :label="tab" />
         </div>
@@ -40,6 +41,15 @@ export default {
                 email: '',
                 password: ''
             }
+        }
+    },
+    methods: {
+        submitForm(){
+            if (this.tab == 'login') {
+                console.log('login user')
+            } else {
+                console.log ('register user')
+            }    
         }
     }
 }
