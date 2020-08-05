@@ -14,6 +14,9 @@ const mutations = {
     },
     addUser(state, payload){
         Vue.set(state.users, payload.userID, payload.userDetails)
+    },
+    updateUser(state, payload) {
+        Object.assign(state.users[payload.userID], payload.userDetails)
     }
 }
 // also methods but can be asynch
@@ -74,6 +77,7 @@ const actions = {
                 }
               })
               dispatch('firebaseGetUsers')
+              //routes user to the next site
               this.$router.push('/')
             } else {
               // User logged out
@@ -93,6 +97,7 @@ const actions = {
     firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     },
+
     firebaseGetUsers({commit}) {
         firebaseDb.ref('users').on('child_added', snapshot =>{
             let userDetails= snapshot.val()
@@ -102,14 +107,27 @@ const actions = {
                 userDetails
             })
         })
-
+        firebaseDb.ref('users').on('child_changed', snapshot =>{
+            let userDetails= snapshot.val()
+            let userID= snapshot.key
+            commit('updateUser', {
+                userID,
+                userDetails
+            })
+        })
     }
 }
 // methods to grab data from the state and 
 // make that data available for vue components
 const getters = {
     users:state => {
-        return state.users
+        let usersFilterd ={}
+        Object.keys(state.users).forEach(key => {
+            if (key!== state.userDetails.userID){
+                usersFilterd[key] = state.users[key]
+            }
+        })
+        return usersFilterd
     }
 }
 

@@ -5,14 +5,14 @@
         separator 
         >
         <q-item
-          v-for="user in users"
-          :key="user.id"
+          v-for="(user, key) in users"
+          :key="key"
           to="/chat"
           clickable
           v-ripple>
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white">
-              {{ user.name.charAt(0)}}
+              <!-- {{ user.name.charAt(0)}} -->
             </q-avatar>
           </q-item-section>
 
@@ -36,7 +36,6 @@
 <script>
 import {mapGetters} from 'vuex'
 export default {
-
   computed: {
     ...mapGetters('store', ['users'])
   }
