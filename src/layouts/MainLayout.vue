@@ -22,6 +22,14 @@
           flat
           dense
           label="Login" />
+        <q-btn
+          v-else
+          class="absolute-right q-pr-sm"
+          icon="account_circle"
+          no-caps
+          flat
+          dense
+          label="Logout" />
 
       </q-toolbar>
     </q-header>
