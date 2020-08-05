@@ -34,24 +34,11 @@
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
 export default {
-  data () {
-    return {
-      users: [ {
-        id: 1,
-        name: 'Ruddy',
-        online: true
-      }, {
-        id: 2,
-        name: 'Mallorie',
-        online: true
-      }, {
-        id: 3,
-        name: 'Elisabetta',
-        online: false
-      }]
-    }
+
+  computed: {
+    ...mapGetters('store', ['users'])
   }
 }
 </script>

@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('store', ['logoutUser'])
+    ...mapActions ('store', ['logoutUser'])
   }
 }
 </script>

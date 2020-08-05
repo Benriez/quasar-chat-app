@@ -1,14 +1,19 @@
+import Vue from 'vue'
 import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
 //all the data of the app will go here
 const state = {
-    userDetails: {}
+    userDetails: {},
+    users: {}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
 const mutations = {
     setUserDetails(state, payload) {
         state.userDetails = payload
+    },
+    addUser(state, payload){
+        Vue.set(state.users, payload.userID, payload.userDetails)
     }
 }
 // also methods but can be asynch
@@ -38,6 +43,9 @@ const actions = {
                 console.log(error.message)
             })
     },
+    logoutUser(){
+        firebaseAuth.signOut()
+    },
     //to trigger a mutation, use the commit method
     handleAuthStateChanged({commit, dispatch, state}){
         //firebase hook that listens for change
@@ -58,14 +66,14 @@ const actions = {
                       userID: userID
                   })
               })
-              //update users online status on firebase
+
               dispatch('firebaseUpdateUser', {
-                  userID: userID,
-                  updates: {
-                      online: true
-                  }
+                userID: userID,
+                updates: {
+                    online: true
+                }
               })
-              //routes user to the next site
+              dispatch('firebaseGetUsers')
               this.$router.push('/')
             } else {
               // User logged out
@@ -81,17 +89,28 @@ const actions = {
             }
           });
     },
-    firebaseUpdateUser({}, payload){
+
+    firebaseUpdateUser({}, payload) {
         firebaseDb.ref('users/' + payload.userID).update(payload.updates)
     },
-    logoutUser(){
-        firebaseAuth.signOut()
+    firebaseGetUsers({commit}) {
+        firebaseDb.ref('users').on('child_added', snapshot =>{
+            let userDetails= snapshot.val()
+            let userID= snapshot.key
+            commit('addUser', {
+                userID,
+                userDetails
+            })
+        })
+
     }
 }
 // methods to grab data from the state and 
 // make that data available for vue components
 const getters = {
-
+    users:state => {
+        return state.users
+    }
 }
 
 export default {
