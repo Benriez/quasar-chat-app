@@ -16,7 +16,12 @@ const actions = {
         firebaseAuth.createUserWithEmailAndPassword(payload.email, payload.password)
             .then(response => {
                 console.log(response)
-
+                let userID = firebaseAuth.currentUser.uid
+                firebaseDb.ref('users/' + userID).set({
+                    name: payload.name,
+                    email:payload.email,
+                    online: true
+                })
             })
             .catch(error => {
                 console.log(error.message)
