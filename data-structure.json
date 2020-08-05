@@ -1,0 +1,40 @@
+{
+    "users": {
+        "USERID1":{
+            "name": "Rick",
+            "email": "rickest@rick.com",
+            "online": "true"
+        },
+        "USERID2":{
+            "name": "Morty",
+            "email": "geez@morty.com",
+            "online": "true"
+        }
+    },
+    "chats": {
+        "USERID1": {
+            "USERID2": {
+                "MESSAGEID1": {
+                    "text": "Jo",
+                    "from": "them"
+                },
+                "MESSAGEID2": {
+                    "text": "sssup",
+                    "from": "me"
+                }
+            }
+        },
+        "USERID2": {
+            "USERID1": {
+                "MESSAGEID1": {
+                    "text": "Jo",
+                    "from": "me"
+                },
+                "MESSAGEID2": {
+                    "text": "sssup",
+                    "from": "them"
+                }
+            }
+        }
+    }
+}
