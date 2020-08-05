@@ -110,7 +110,13 @@ const actions = {
 // make that data available for vue components
 const getters = {
     users:state => {
-        return state.users
+        let usersFilterd ={}
+        Object.keys(state.users).forEach(key => {
+            if (key!== state.userDetails.userID){
+                usersFilterd[key] = state.users[key]
+            }
+        })
+        return usersFilterd
     }
 }
 
