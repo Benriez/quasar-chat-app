@@ -47,10 +47,10 @@ export default {
     },
     methods: {
         //vuex
-        ...mapActions('store', ['registerUser']),
+        ...mapActions('store', ['registerUser', 'loginUser']),
         submitForm(){
             if (this.tab == 'login') {
-                console.log('login user')
+                this.loginUser(this.formData)
             } else {
                 this.registerUser(this.formData)
             }    

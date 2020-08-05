@@ -26,6 +26,9 @@ const actions = {
             .catch(error => {
                 console.log(error.message)
             })
+    },
+    loginUser(){
+        console.log('login user')
     }
 }
 // methods to grab data from the state and 
