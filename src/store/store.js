@@ -20,7 +20,7 @@ const mutations = {
         Object.assign(state.users[payload.userID], payload.userDetails)
     },
     addMessage(state, payload){
-        Vue.set(state.messages, payload.messageID, paylaod.messageDetails)
+        Vue.set(state.messages, payload.messageID, payload.messageDetails)
     }
 }
 // also methods but can be asynch

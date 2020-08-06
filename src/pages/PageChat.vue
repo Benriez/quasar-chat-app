@@ -44,29 +44,18 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   data(){
     return {
-      newMessage: '',
-      messages: [
-        {
-          text: 'Jo was up',
-          from: 'me'
-        },
-        {
-          text: 'nothing',
-          from: 'them'
-        },
-        {
-          text: 'lets chill',
-          from: 'me'
-        }
-      ]
+      newMessage: ''
     }
   },
+  computed: {
+    ...mapState('store', ['messages'])
+  },
   methods: {
-    ...mapActions('store', ['firebaseGetMessages']),
+    ...mapActions('store', ['firebaseGetMessages']), 
     sendMessage() {
       this.messages.push({
         text: this.newMessage,
