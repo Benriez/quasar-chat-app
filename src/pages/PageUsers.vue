@@ -23,7 +23,7 @@
 
           <q-item-section side>
             <q-badge 
-              :color="user.online ? 'light-blue-5' : 'grey-4'">
+              :color="user.online ? 'cyan' : 'blue-grey-7'">
               <!-- if condition ?=then  :=else -->
               {{user.online ? 'online' : 'offline'}}
             </q-badge>
@@ -50,4 +50,6 @@ export default {
     color: #fff
   .q-list--separator > .q-item-type + .q-item-type
     border-top: 1px solid #ffffff1f
+  .q-icon
+    color: #26c6da
 </style>

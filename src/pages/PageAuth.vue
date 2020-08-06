@@ -6,8 +6,8 @@
         dense
         bg-color="blue"
         class="text-grey"
-        active-color="primary"
-        indicator-color="primary"
+        active-color="white"
+        indicator-color="white"
         align="justify"
         narrow-indicator
       >
@@ -48,9 +48,9 @@ export default {
 
 <style lang= "stylus">
   .q-card
-    background: #fff
+    background: #1a2b35
   .q-tab-panels
-    background: #fff
+    background: #1a2b35
   .q-page
     background: #0e1621
 </style>
