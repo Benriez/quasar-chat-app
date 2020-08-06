@@ -53,4 +53,5 @@ export default {
     background: #1a2b35
   .q-page
     background: #0e1621
+  
 </style>

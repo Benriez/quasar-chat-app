@@ -62,9 +62,10 @@ export default {
 <style lang="stylus">
     .q-field--outlined .q-field__control:before
         border: 1px solid #ffffff40
-    .q-field--float .q-field__label
+    .q-field--float
         color: #ffffffb3
     .q-field--labeled .q-field__native
         color: #fff
-
+    .q-field__label
+        color: #ffffffb3
 </style>

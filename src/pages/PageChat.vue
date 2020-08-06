@@ -30,7 +30,7 @@
           <q-input
             v-model="newMessage"
             ref= "newMessage"
-            bg-color="white"
+            bg-color="blue-grey-6"
             outlined
             rounded
             label="Message"
@@ -138,4 +138,5 @@ export default {
     color: #26c6da
   .q-message-text-content
     color: #fff
+
 </style>
