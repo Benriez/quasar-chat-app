@@ -147,6 +147,12 @@ const actions = {
           messagesRef.off('child_added')
           commit('clearMessages') 
        } 
+    },
+    firebaseSendMessage({}, payload) {
+        console.log('payload: ', payload)
+        firebaseDb.ref('chats/' + state.userDetails.userID + '/'+ payload.otherUserID).push(payload.message)
+        payload.message.from = 'them'
+        firebaseDb.ref('chats/' + payload.otherUserID + '/'+ state.userDetails.userID).push(payload.message)
     }
 }
 // methods to grab data from the state and 
