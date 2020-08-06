@@ -45,7 +45,9 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import mixinOtherUserDetails from 'src/mixins/mixin-other-user-details.js'
 export default {
+  mixins: [mixinOtherUserDetails],
   data(){
     return {
       newMessage: ''
@@ -53,9 +55,6 @@ export default {
   },
   computed: {
     ...mapState('store', ['messages', 'userDetails']),
-    otherUserDetails(){
-      return this.$store.state.store.users[this.$route.params.otherUserID]
-    }
   },
   methods: {
     ...mapActions('store', ['firebaseGetMessages', 'firebaseStopGettingMessages']), 
