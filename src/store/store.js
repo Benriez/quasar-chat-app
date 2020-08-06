@@ -4,7 +4,8 @@ import {firebaseAuth, firebaseDb} from 'boot/firebase'
 //all the data of the app will go here
 const state = {
     userDetails: {},
-    users: {}
+    users: {},
+    messages: {}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
@@ -17,6 +18,9 @@ const mutations = {
     },
     updateUser(state, payload) {
         Object.assign(state.users[payload.userID], payload.userDetails)
+    },
+    addMessage(state, payload){
+        Vue.set(state.messages, payload.messageID, paylaod.messageDetails)
     }
 }
 // also methods but can be asynch
@@ -118,13 +122,17 @@ const actions = {
             })
         })
     },
-    firebaseGetMessages({state}, otherUserID) {
+    firebaseGetMessages({commit, state}, otherUserID) {
         let userID = state.userDetails.userID
         firebaseDb.ref('chats/' + userID + '/' + otherUserID).on('child_added', snapshot => {
             let messageDetails = snapshot.val()
             let messageID = snapshot.key
             console.log ('messageDetails: ', messageDetails)
             console.log ('messageID: ', messageID)
+            commit('addMessage', {
+                messageID,
+                messageDetails
+            })
         }) 
     }
 }
