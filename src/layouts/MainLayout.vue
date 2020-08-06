@@ -44,8 +44,9 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-
+import mixinOtherUserDetails from 'src/mixins/mixin-other-user-details.js'
 export default {
+  mixins: [mixinOtherUserDetails],
   computed: {
     //userDetails object is now available within this component
     ...mapState('store', ['userDetails']),
