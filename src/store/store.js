@@ -117,6 +117,15 @@ const actions = {
                 userDetails
             })
         })
+    },
+    firebaseGetMessages({state}, otherUserID) {
+        let userID = state.userDetails.userID
+        firebaseDb.ref('chats/' + userID + '/' + otherUserID).on('child_added', snapshot => {
+            let messageDetails = snapshot.val()
+            let messageID = snapshot.key
+            console.log ('messageDetails: ', messageDetails)
+            console.log ('messageID: ', messageID)
+        }) 
     }
 }
 // methods to grab data from the state and 

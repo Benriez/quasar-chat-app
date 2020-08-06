@@ -4,6 +4,7 @@
         class="full-width"
         separator 
         >
+        <!-- key contains user id -->
         <q-item
           v-for="(user, key) in users"
           :key="key"
