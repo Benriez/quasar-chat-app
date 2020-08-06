@@ -1,11 +1,16 @@
 <template>
-  <q-page class="flex column">
+  <q-page
+    ref="pageChat"
+    class="flex column">
     <q-banner
       v-if="!otherUserDetails.online"
       class="bg-grey-4 text-center">
       {{otherUserDetails.name}} offline
     </q-banner>
-    <div class="q-pa-md column col justify-end">
+    <!-- invisible when showMessages is false -->
+    <div 
+      :class = "{'invisible' : !showMessages}"
+      class="q-pa-md column col justify-end">
       <q-chat-message
         v-for="(message, key) in messages"
         :key="key"
@@ -52,7 +57,8 @@ export default {
   mixins: [mixinOtherUserDetails],
   data(){
     return {
-      newMessage: ''
+      newMessage: '',
+      showMessages: false
     }
   },
   computed: {
@@ -69,6 +75,22 @@ export default {
         otherUserID: this.$route.params.otherUserID
 
       })
+    },
+    scrollToBottom() {
+      let pageChat = this.$refs.pageChat.$el
+      setTimeout(() => {
+        window.scrollTo(0, pageChat.scrollHeight)
+      }, 20)
+    }
+  },
+  watch: {
+    messages: function(val){
+      if (Object.keys(val).length){
+        this.scrollToBottom()
+        setTimeout(() =>{
+          this.showMessages = true
+        }, 50)
+      }
     }
   },
   mounted(){
