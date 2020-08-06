@@ -1,6 +1,8 @@
 <template>
   <q-page class="flex column">
-    <q-banner class="bg-grey-4 text-center">
+    <q-banner
+      v-if="!otherUserDetails.online"
+      class="bg-grey-4 text-center">
       {{otherUserDetails.name}} offline
     </q-banner>
     <div class="q-pa-md column col justify-end">
