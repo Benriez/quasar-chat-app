@@ -75,6 +75,10 @@ export default {
         otherUserID: this.$route.params.otherUserID
 
       })
+      this.clearMessage()
+    },
+    clearMessage() {
+      this.newMessage = ''
     },
     scrollToBottom() {
       let pageChat = this.$refs.pageChat.$el
