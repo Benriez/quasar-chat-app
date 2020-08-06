@@ -1,7 +1,7 @@
 <template>
   <q-page
     ref="pageChat"
-    class="flex column">
+    class="page-chat flex column">
     <q-banner
       v-if="!otherUserDetails.online"
       class="bg-grey-4 text-center">
@@ -109,6 +109,21 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang= "stylus">
+  .page-chat
+    background #0E1621
+    &:after 
+      content ''
+      display block
+      position fixed
+      left 0
+      right 0
+      top 0
+      bottom 0
+      z-index 0
+      opacity 0.1
+      background linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px, linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px, linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px, linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px, linear-gradient(90deg, #1b1b1b 10px, transparent 10px), linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+      background-size 20px 20px
+  .q-message
+    z-index 1
 </style>
