@@ -17,6 +17,7 @@
         :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
+        :bg-color="message.from == 'me' ? 'white' : 'light-blue-2'"
       />
 
     </div>
