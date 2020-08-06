@@ -95,7 +95,9 @@ const actions = {
     },
 
     firebaseUpdateUser({}, payload) {
-        firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+        if(payload.userID){
+            firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+        }
     },
 
     firebaseGetUsers({commit}) {
@@ -121,13 +123,13 @@ const actions = {
 // make that data available for vue components
 const getters = {
     users:state => {
-        let usersFilterd ={}
+        let usersFiltered ={}
         Object.keys(state.users).forEach(key => {
             if (key!== state.userDetails.userID){
-                usersFilterd[key] = state.users[key]
+                usersFiltered[key] = state.users[key]
             }
         })
-        return usersFilterd
+        return usersFiltered
     }
 }
 
