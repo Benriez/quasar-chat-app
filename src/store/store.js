@@ -150,6 +150,7 @@ const actions = {
     },
     firebaseSendMessage({}, payload) {
         console.log('payload: ', payload)
+        //stores messages in firebase
         firebaseDb.ref('chats/' + state.userDetails.userID + '/'+ payload.otherUserID).push(payload.message)
         payload.message.from = 'them'
         firebaseDb.ref('chats/' + payload.otherUserID + '/'+ state.userDetails.userID).push(payload.message)
