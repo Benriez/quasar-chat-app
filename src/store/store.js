@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
+
+let messagesRef
+
 //all the data of the app will go here
 const state = {
     userDetails: {},
-    users: {}
+    users: {},
+    messages: {}
 }
 // methods wich will manipulate the data
 // these methods cannot be asynch
@@ -17,6 +21,12 @@ const mutations = {
     },
     updateUser(state, payload) {
         Object.assign(state.users[payload.userID], payload.userDetails)
+    },
+    addMessage(state, payload){
+        Vue.set(state.messages, payload.messageID, payload.messageDetails)
+    },
+    clearMessages(state){
+        state.messages = {}
     }
 }
 // also methods but can be asynch
@@ -95,7 +105,9 @@ const actions = {
     },
 
     firebaseUpdateUser({}, payload) {
-        firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+        if(payload.userID){
+            firebaseDb.ref('users/' + payload.userID).update(payload.updates)
+        }
     },
 
     firebaseGetUsers({commit}) {
@@ -115,19 +127,43 @@ const actions = {
                 userDetails
             })
         })
+    },
+    firebaseGetMessages({commit, state}, otherUserID) {
+        let userID = state.userDetails.userID
+        messagesRef = firebaseDb.ref('chats/' + userID + '/' + otherUserID)
+        messagesRef.on('child_added', snapshot => {
+            let messageDetails = snapshot.val()
+            let messageID = snapshot.key
+            commit('addMessage', {
+                messageID,
+                messageDetails
+            })
+        }) 
+    },
+    firebaseStopGettingMessages({commit}){
+       if (messagesRef){
+          messagesRef.off('child_added')
+          commit('clearMessages') 
+       } 
+    },
+    firebaseSendMessage({}, payload) {
+        //stores messages in firebase
+        firebaseDb.ref('chats/' + state.userDetails.userID + '/'+ payload.otherUserID).push(payload.message)
+        payload.message.from = 'them'
+        firebaseDb.ref('chats/' + payload.otherUserID + '/'+ state.userDetails.userID).push(payload.message)
     }
 }
 // methods to grab data from the state and 
 // make that data available for vue components
 const getters = {
     users:state => {
-        let usersFilterd ={}
+        let usersFiltered ={}
         Object.keys(state.users).forEach(key => {
             if (key!== state.userDetails.userID){
-                usersFilterd[key] = state.users[key]
+                usersFiltered[key] = state.users[key]
             }
         })
-        return usersFilterd
+        return usersFiltered
     }
 }
 

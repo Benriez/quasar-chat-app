@@ -13,7 +13,7 @@
           type="email"
           label="Email" /> 
         <q-input
-          outlined
+          outlined 
           v-model="formData.password"
           class="q-mb-md"
           type="password"
@@ -23,7 +23,7 @@
             <q-space />
             <q-btn
               type="submit"
-              color="light-blue-4"
+              color="primary"
               :label="tab" />
         </div>
 
@@ -59,6 +59,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus">
+    .q-field--outlined .q-field__control:before
+        border: 1px solid #ffffff40
+    .q-field--float
+        color: #ffffffb3
+    .q-field--labeled .q-field__native
+        color: #fff
+    .q-field__label
+        color: #ffffffb3
 </style>
