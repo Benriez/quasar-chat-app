@@ -1,7 +1,10 @@
 export default {
     computed: {
         otherUserDetails(){
-            return this.$store.state.store.users[this.$route.params.otherUserID]
+            if(this.$store.state.store.users[this.$route.params.otherUserID]){
+                return this.$store.state.store.users[this.$route.params.otherUserID]
+            }
+            return {}
           }
     }
 }
