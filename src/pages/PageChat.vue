@@ -7,8 +7,8 @@
     </q-banner>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
-        v-for="message in messages"
-        :key="message.text"
+        v-for="(message, key) in messages"
+        :key="key"
         :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
