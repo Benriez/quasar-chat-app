@@ -28,6 +28,7 @@
          <div class="row">
           <q-input
             v-model="newMessage"
+            ref= "newMessage"
             bg-color="white"
             outlined
             rounded
@@ -79,6 +80,7 @@ export default {
     },
     clearMessage() {
       this.newMessage = ''
+      this.$refs.newMessage.focus()
     },
     scrollToBottom() {
       let pageChat = this.$refs.pageChat.$el
