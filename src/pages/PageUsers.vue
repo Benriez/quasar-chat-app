@@ -43,6 +43,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang= "stylus">
+  .q-page
+    background #0E1621
+  .q-item__label
+    color: #fff
+  .q-list--separator > .q-item-type + .q-item-type
+    border-top: 1px solid #ffffff1f
 </style>

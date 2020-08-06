@@ -4,7 +4,7 @@
     class="page-chat flex column">
     <q-banner
       v-if="!otherUserDetails.online"
-      class="bg-grey-4 text-center">
+      class="bg-blue-grey-6 text-center fixed-top text-white">
       {{otherUserDetails.name}} offline
     </q-banner>
     <!-- invisible when showMessages is false -->
@@ -17,7 +17,7 @@
         :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
-        :bg-color="message.from == 'me' ? 'white' : 'light-blue-2'"
+        :bg-color="message.from == 'me' ? 'blue-grey-9' : 'blue-grey-10'"
       />
 
     </div>
@@ -127,4 +127,15 @@ export default {
       background-size 20px 20px
   .q-message
     z-index 1
+  .q-banner
+    top 50px
+    opacity 0.8
+    z-index 2
+  .q-message-name
+    color: #5ddaf7bf
+    font-size: xx-small
+  .q-icon
+    color: #26c6da
+  .q-message-text-content
+    color: #fff
 </style>

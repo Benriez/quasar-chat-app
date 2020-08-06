@@ -1,9 +1,10 @@
 <template>
-  <q-page class="flex q-pa-md">
+  <q-page class="flex q-pa-md" >
     <q-card class="full-width"> 
       <q-tabs
         v-model="tab"
         dense
+        bg-color="blue"
         class="text-grey"
         active-color="primary"
         indicator-color="primary"
@@ -45,6 +46,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang= "stylus">
+  .q-card
+    background: #fff
+  .q-tab-panels
+    background: #fff
+  .q-page
+    background: #0e1621
 </style>

@@ -23,7 +23,7 @@
             <q-space />
             <q-btn
               type="submit"
-              color="light-blue-4"
+              color="primary"
               :label="tab" />
         </div>
 

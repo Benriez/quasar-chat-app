@@ -16,7 +16,7 @@
         <q-btn
           v-if="!userDetails.userID"
           to="/auth"
-          class="absolute-right q-pr-sm"
+          class="absolute-right q-pr-sm text-caption"
           icon="account_circle"
           no-caps
           flat
@@ -25,7 +25,7 @@
         <q-btn
           v-else
           @click="logoutUser"
-          class="absolute-right q-pr-sm"
+          class="absolute-right q-pr-sm text-caption"
           icon="account_circle"
           no-caps
           flat
@@ -53,8 +53,8 @@ export default {
     title() {
       // determin current path
       let currentPath = this.$route.fullPath
-      if (currentPath == '/') return 'Quasar-Chat-App'
-      else if (currentPath == '/auth') return 'Login'
+      if (currentPath == '/') return 'NextChat'
+      else if (currentPath == '/auth') return 'Nextchat'
       else if (currentPath.includes ('/chat')) return this.otherUserDetails.name
       console.log(currentPath)
     }
@@ -68,5 +68,9 @@ export default {
 <style lang="stylus">
   .q-toolbar
     .q-btn
-      line-height: 1.2
+      line-height: 1.5
+      font-size: 10px
+    .q-icon
+      margin-right: 5px
+      font-size: 2em
 </style>
