@@ -55,7 +55,7 @@ export default {
     ...mapState('store', ['messages'])
   },
   methods: {
-    ...mapActions('store', ['firebaseGetMessages']), 
+    ...mapActions('store', ['firebaseGetMessages', 'firebaseStopGettingMessages']), 
     sendMessage() {
       this.messages.push({
         text: this.newMessage,
@@ -65,6 +65,10 @@ export default {
   },
   mounted(){
     this.firebaseGetMessages(this.$route.params.otherUserID)
+  },
+  //this hook will be triggered when the user is leaving the current page
+  destroyed(){
+    this.firebaseStopGettingMessages()
   }
 }
 </script>

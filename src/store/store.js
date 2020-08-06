@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import {firebaseAuth, firebaseDb} from 'boot/firebase'
 
+
+let messagesRef
+
 //all the data of the app will go here
 const state = {
     userDetails: {},
@@ -21,6 +24,9 @@ const mutations = {
     },
     addMessage(state, payload){
         Vue.set(state.messages, payload.messageID, payload.messageDetails)
+    },
+    clearMessages(state){
+        state.messages = {}
     }
 }
 // also methods but can be asynch
@@ -124,7 +130,8 @@ const actions = {
     },
     firebaseGetMessages({commit, state}, otherUserID) {
         let userID = state.userDetails.userID
-        firebaseDb.ref('chats/' + userID + '/' + otherUserID).on('child_added', snapshot => {
+        messagesRef = firebaseDb.ref('chats/' + userID + '/' + otherUserID)
+        messagesRef.on('child_added', snapshot => {
             let messageDetails = snapshot.val()
             let messageID = snapshot.key
             console.log ('messageDetails: ', messageDetails)
@@ -134,6 +141,12 @@ const actions = {
                 messageDetails
             })
         }) 
+    },
+    firebaseStopGettingMessages({commit}){
+       if (messagesRef){
+          messagesRef.off('child_added')
+          commit('clearMessages') 
+       } 
     }
 }
 // methods to grab data from the state and 
