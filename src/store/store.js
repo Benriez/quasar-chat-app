@@ -134,8 +134,6 @@ const actions = {
         messagesRef.on('child_added', snapshot => {
             let messageDetails = snapshot.val()
             let messageID = snapshot.key
-            console.log ('messageDetails: ', messageDetails)
-            console.log ('messageID: ', messageID)
             commit('addMessage', {
                 messageID,
                 messageDetails
@@ -149,7 +147,6 @@ const actions = {
        } 
     },
     firebaseSendMessage({}, payload) {
-        console.log('payload: ', payload)
         //stores messages in firebase
         firebaseDb.ref('chats/' + state.userDetails.userID + '/'+ payload.otherUserID).push(payload.message)
         payload.message.from = 'them'
